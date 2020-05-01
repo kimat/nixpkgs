@@ -1742,6 +1742,8 @@ in
 
   eschalot = callPackage ../tools/security/eschalot { };
 
+  espanso = callPackage ../applications/office/espanso { };
+
   esphome = callPackage ../servers/home-assistant/esphome.nix { };
 
   esptool = callPackage ../tools/misc/esptool { };
