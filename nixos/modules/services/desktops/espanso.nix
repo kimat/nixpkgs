@@ -6,7 +6,9 @@ in {
   meta = { maintainers = with lib.maintainers; [ numkem ]; };
 
   options = {
-    services.espanso = { enable = options.mkEnableOption (lib.mdDoc "Espanso"); };
+    services.espanso = {
+      enable = options.mkEnableOption (lib.mdDoc "Espanso");
+    };
   };
 
   config = mkIf cfg.enable {
@@ -20,5 +22,13 @@ in {
     };
 
     environment.systemPackages = [ pkgs.espanso ];
+
+    security.wrappers.dumpcap = {
+      source = "${espanso}/bin/espanso";
+      capabilities = "cap_dac_override+p";
+      owner = "root";
+      # group = "espanso";
+      permissions = "u+rw";
+    };
   };
 }
