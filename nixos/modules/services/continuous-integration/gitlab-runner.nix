@@ -187,7 +187,7 @@ let
   };
   startScript = pkgs.writeShellScriptBin "gitlab-runner-start" ''
     export CONFIG_FILE=${configPath}
-    exec gitlab-runner run --working-directory $HOME
+    exec gitlab-runner run --working-directory /home/gitlab-runner --user gitlab-runner
   '';
 in {
   options.services.gitlab-runner = {
